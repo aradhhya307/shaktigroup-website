@@ -566,6 +566,32 @@ input, textarea, select {
 }
 .div-art-1 { background: radial-gradient(ellipse at 80% 50%, var(--gold) 0%, transparent 60%); opacity: 0.08; }
 .div-art-2 { background: radial-gradient(ellipse at 20% 50%, #1e5fcc 0%, transparent 60%); opacity: 0.12; }
+
+/* E-Net subtle glowing dots */
+.enet-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.ed {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79,168,255,0.7) 0%, rgba(79,168,255,0) 70%);
+  animation: edFloat linear infinite;
+}
+.ed-1 { width: 180px; height: 180px; top: 10%;  left: 5%;  animation-duration: 18s; animation-delay: 0s;   opacity: 0.18; }
+.ed-2 { width: 120px; height: 120px; top: 55%;  left: 30%; animation-duration: 22s; animation-delay: -4s;  opacity: 0.13; }
+.ed-3 { width: 220px; height: 220px; top: 20%;  right: 8%; animation-duration: 26s; animation-delay: -8s;  opacity: 0.12; }
+.ed-4 { width:  90px; height:  90px; bottom: 15%; left: 55%; animation-duration: 20s; animation-delay: -2s; opacity: 0.16; }
+.ed-5 { width: 150px; height: 150px; bottom: 5%;  right: 20%; animation-duration: 24s; animation-delay: -6s; opacity: 0.10; }
+@keyframes edFloat {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(18px, -22px) scale(1.06); }
+  66%  { transform: translate(-14px, 16px) scale(0.96); }
+  100% { transform: translate(0, 0) scale(1); }
+}
 .div-art-3 { background: radial-gradient(ellipse at 80% 50%, #2a9d8f 0%, transparent 60%); opacity: 0.1; }
 .div-art-4 { background: radial-gradient(ellipse at 20% 50%, var(--gold) 0%, transparent 60%); opacity: 0.1; }
 
