@@ -1258,77 +1258,38 @@ input, textarea, select {
 .ci-biz-emails {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0;
   margin-bottom: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
 }
 .ci-biz-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
-  flex-wrap: wrap;
+  padding: 10px 14px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.18s ease;
 }
-.ci-biz-tag {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+.ci-biz-item:last-child { border-bottom: none; }
+.ci-biz-item:hover { background: rgba(232,160,32,0.06); }
+.ci-biz-name {
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--gold);
-  background: rgba(232,160,32,0.1);
-  border: 1px solid rgba(232,160,32,0.3);
-  border-radius: 4px;
-  padding: 2px 8px;
   white-space: nowrap;
-  min-width: 110px;
-  text-align: center;
+  min-width: 100px;
 }
-
-/* CTA Buttons (WhatsApp + Email) */
-.form-cta-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-top: 8px;
+.ci-biz-email {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: right;
+  transition: color 0.18s ease;
 }
-.btn-whatsapp {
-  background: #25D366;
-  color: #fff;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 1rem;
-  font-weight: 700;
-  padding: 15px 24px;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  transition: background 0.2s ease, transform 0.15s ease;
-}
-.btn-whatsapp:hover {
-  background: #1ebe5d;
-  transform: translateY(-1px);
-}
-.btn-email {
-  background: transparent;
-  color: var(--gold);
-  border: 2px solid var(--gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 1rem;
-  font-weight: 700;
-  padding: 13px 24px;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
-}
-.btn-email:hover {
-  background: var(--gold);
-  color: var(--bg);
-  transform: translateY(-1px);
-}
-.btn-full { width: 100%; }
+.ci-biz-item:hover .ci-biz-email { color: var(--off-white); }
 
 /* ─── FOOTER ─────────────────────────────────────────────── */
 .footer {
