@@ -701,6 +701,18 @@ input, textarea, select {
   transition: border-color var(--transition), color var(--transition);
 }
 .ds-item:hover { border-color: var(--border-gold); color: var(--off-white); }
+.ds-item-enet {
+  border-color: rgba(232,160,32,0.45) !important;
+  color: var(--off-white) !important;
+  background: rgba(232,160,32,0.06) !important;
+  font-weight: 500;
+}
+.ds-item-enet:hover {
+  border-color: var(--gold) !important;
+  background: rgba(232,160,32,0.12) !important;
+  color: var(--gold) !important;
+  box-shadow: 0 0 10px rgba(232,160,32,0.15);
+}
 
 /* Clients */
 .div-clients { margin-bottom: 18px; }
