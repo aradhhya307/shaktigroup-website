@@ -554,7 +554,7 @@ input, textarea, select {
   border-top: 1px solid var(--border);
 }
 .division-textiles    { background: linear-gradient(135deg, #06091A 0%, #0B1528 100%); }
-.division-connectivity{ background: linear-gradient(135deg, #060D1A 0%, #091428 100%); }
+.division-connectivity{ background: linear-gradient(135deg, #060D1A 0%, #091428 100%); position: relative; }
 .division-fenestration{ background: linear-gradient(135deg, #06091A 0%, #0B1023 100%); }
 .division-energy      { background: linear-gradient(135deg, #080B14 0%, #0D1422 100%); }
 
@@ -566,6 +566,16 @@ input, textarea, select {
 }
 .div-art-1 { background: radial-gradient(ellipse at 80% 50%, var(--gold) 0%, transparent 60%); opacity: 0.08; }
 .div-art-2 { background: radial-gradient(ellipse at 20% 50%, #1e5fcc 0%, transparent 60%); opacity: 0.12; }
+.enet-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+}
+.enet-tagline { color: var(--gold) !important; font-style: normal !important; font-weight: 600 !important; }
 .div-art-3 { background: radial-gradient(ellipse at 80% 50%, #2a9d8f 0%, transparent 60%); opacity: 0.1; }
 .div-art-4 { background: radial-gradient(ellipse at 20% 50%, var(--gold) 0%, transparent 60%); opacity: 0.1; }
 

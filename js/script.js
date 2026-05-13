@@ -162,6 +162,101 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 /* ─── HOVER glow on division cards ──────────────────────── */
+/* ─── E-NET NETWORK CANVAS ANIMATION ────────────────────── */
+(function () {
+  const canvas = document.getElementById('enetCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const NODE_COUNT = 38;
+  const CONNECT_DIST = 160;
+  const nodes = [];
+
+  for (let i = 0; i < NODE_COUNT; i++) {
+    nodes.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      r: Math.random() * 2.5 + 1.5,
+    });
+  }
+
+  // Data packets travelling along edges
+  const packets = [];
+  function spawnPacket() {
+    const a = Math.floor(Math.random() * NODE_COUNT);
+    let b = Math.floor(Math.random() * NODE_COUNT);
+    while (b === a) b = Math.floor(Math.random() * NODE_COUNT);
+    packets.push({ a, b, t: 0, speed: 0.008 + Math.random() * 0.012 });
+  }
+  for (let i = 0; i < 6; i++) spawnPacket();
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Move nodes
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > canvas.width)  n.vx *= -1;
+      if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+    });
+
+    // Draw edges
+    for (let i = 0; i < NODE_COUNT; i++) {
+      for (let j = i + 1; j < NODE_COUNT; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONNECT_DIST) {
+          const alpha = (1 - dist / CONNECT_DIST) * 0.5;
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(79,168,255,${alpha})`;
+          ctx.lineWidth = 0.8;
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw nodes
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(79,168,255,0.8)';
+      ctx.fill();
+    });
+
+    // Animate packets
+    for (let i = packets.length - 1; i >= 0; i--) {
+      const p = packets[i];
+      p.t += p.speed;
+      if (p.t >= 1) { packets.splice(i, 1); spawnPacket(); continue; }
+      const na = nodes[p.a], nb = nodes[p.b];
+      const px = na.x + (nb.x - na.x) * p.t;
+      const py = na.y + (nb.y - na.y) * p.t;
+      ctx.beginPath();
+      ctx.arc(px, py, 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(232,160,32,0.95)';
+      ctx.shadowColor = 'rgba(232,160,32,0.8)';
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
 document.querySelectorAll('.dv-card, .pstep, .av-card').forEach(card => {
   card.addEventListener('mouseenter', function () {
     this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease';
